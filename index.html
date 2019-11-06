@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Coding Quiz Challenge</title>
+</head>
+<body>
+    <nav>
+          <div class="container">
+              <div class="row">
+                  <div id="score" class="col-md-6">
+                       View Score
+                  </div>
+                  <div id="time" class="col-md-6">
+                    Time : 
+                  </div>
+              </div>
+          </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div  class="col-md-12">
+                <div >
+                        <button  id="start_quiz" type="button"  class="btn btn-success">Star Quiz</button> 
+                </div>
+                <ul type="radio" id="questionDisplay">
+                </ul>
+                <ul id="displayChoices">
+                    <ul id="secondTry"></ul>
+
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+    <script src="question.js">
+    </script>
+</body>
+</html>
