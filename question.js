@@ -71,92 +71,73 @@ var questions = [
         answer: "navigator.appName  "
     },
 ]
-
-var title =questions[0];
-var questionsD = document.querySelector("#questionDisplay");
 var startQuiz = document.querySelector("#start_quiz");
+var questionsD = document.querySelector("#questionDisplay");
 var displayChoices = document.querySelector("#displayChoices");
+var result = document.querySelector("#result");
+var i = 0;
+startQuiz.addEventListener("click", start);
 
 function start() {
-   if(startQuiz == onclick) {
-    alert("You have 5 min");
-   }
-   renderQuestions()
-//    showQuestions(questions, quizContainer);
+    if (startQuiz == true) {
+        alert("You have 5 min");
 
+    }
+    renderQuestions()
 }
-startQuiz.addEventListener("click",start);
 
-function renderQuestions(){
+
+function renderQuestions() {
     questionsD.innerHTML = "";
-    for (var i = 0; i < questions.length; i ++) {
-        var questionsArray = questions[i];
-
-         var li = document.createElement("li");
-         li.textContent = questionsArray.title;
-        //  li.textContent = questionsArray.choices;
-
-         li.setAttribute("data-index", i);
-        
-         questionsD.appendChild(li);
-         renderChoices()
-         
+    for (var i = 0; i < 1; i++) {
+        var li = document.createElement("li");
+        li.textContent = questions[0].title;
+        questionsD.appendChild(li);
+        renderChoices()
     }
 
-}
+    function renderChoices() {
+        displayChoices.innerHTML = "";
+        for (var i = 0; i < 1; i++) {
 
-function renderChoices(){
-    displayChoices.innerHTML = "";
+            var txt = "";
+            var choices = questions[0].choices;
+            choices.forEach(myFunction);
+            document.getElementById("displayChoices").innerHTML = txt;
+
+            function myFunction(value) {
+                txt = txt + "<input type=radio>" + value + "<br>";
+            }
+
+        }
+    }
+
+    console.log(questions[0].choices);
+
+}
+var timeEl = document.querySelector("#time");
+var secondsLeft = 100;
+
+function setTime() {
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left";
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      result();
+    }
+
+  }, 1000);
+}
+function result() {
+    timeEl.textContent = " ";
+  
+    var inputEl = document.createElement("input");
+  inputEl.setAttribute("type","text");
     
-    for (var i = 0; i< questions.length;i++){
-        var questionsArray = questions[i];
-        var li =document.createElement("li");
-        li.textContent = questionsArray.choices;
-        var radioButtons = document.createElement ("button");
-        radioButtons.setAttribute("type","radio");
-        li.appendChild(radioButtons);
-        questionsD.append(li);
-    }
-
-}
-console.log(questions);
-
-// var quizContainer = document.querySelector("#secondTry")
-
-// function showQuestions(questions, quizContainer){
-// 	// we'll need a place to store the output and the answer choices
-// 	var output = [];
-// 	var choices;
-
-// 	// for each question...
-// 	for(var i=0; i<questions.length; i++){
-		
-// 		// first reset the list of answers
-// 		choices = [];
-
-// 		// for each available answer to this question...
-// 		for(letter in questions[i].choices){
-
-// 			// ...add an html radio button
-// 			choices.push(
-// 				'<div>'
-// 					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-// 					+ letter + ': '
-// 					+ questions[i].choices[letter]
-// 				+ '</div>'
-// 			);
-// 		}
-
-// 		// add this question and its answers to the output
-// 		output.push(
-// 			 '<div>' + questions[i].title + '</div>'  
-// 			+ '<div>' + choices.join('') + '</div>'
-// 		);
-// 	}
-
-// 	// finally combine our output list into one string of html and put it on the page
-// 	quizContainer.innerHTML = output.join('');
-// }
-
-
-// showQuestions(questions, quizContainer);
+    result.appendChild(inputEl);
+  
+  }
+  
+  setTime();
