@@ -2,6 +2,11 @@
 
 var questions = [
     {
+        title: "How do you write Hello World in an alert box?",
+        choices: ["alert('Hello World')", "alertBox('Hello World')", "msgBox('Hello World')", "msg('Hello World')",],
+        answer: "alert('Hello World')"
+    },
+    {
         title: "Commonly used data types DO NOT include:",
         choices: ["strings", "booleans", "alerts", "numbers"],
         answer: "alerts"
@@ -27,19 +32,8 @@ var questions = [
         choices: ["False", "True"],
         answer: "False",
     },
-    {
-        title: "How do you write Hello World in an alert box?",
-        choices: ["alert('Hello World')",
-            "alertBox('Hello World')",
-            "msgBox('Hello World')",
-            "msg('Hello World')",],
-        answer: "alert('Hello World')"
-    },
-    {
-        title: "How do you create a function in JavaScript?",
-        choices: ["function myFunction()", "function:myFunction()", "function = myFunction()"],
-        answer: "function myFunction()",
-    },
+
+
     {
         title: "How does a WHILE loop start?",
         choices: ["while (i <= 10; i++)  ", "while i = 1 to 10", "while (i <= 10)  "],
@@ -50,11 +44,7 @@ var questions = [
         choices: ["for i = 1 to 5", "for (i = 0; i <= 5; i++) ", "for (i <= 5; i++)", "for (i = 0; i <= 5)",],
         answer: "for (i = 0; i <= 5; i++) ",
     },
-    {
-        title: "How can you add a comment in a JavaScript?",
-        choices: ["<!--This is a comment-->", "'This is a comment", "//This is a comment"],
-        answer: "//This is a comment",
-    },
+
     {
         title: "How do you round the number 7.25, to the nearest integer?",
         choices: ["rnd(7.25)", "Math.round(7.25)", "round(7.25)", "Math.rnd(7.25)"],
@@ -80,64 +70,94 @@ startQuiz.addEventListener("click", start);
 
 function start() {
     if (startQuiz == true) {
-        alert("You have 5 min");
-
     }
-    renderQuestions()
+    renderQuestions();
+    setTime();
 }
-
 
 function renderQuestions() {
+
     questionsD.innerHTML = "";
-    for (var i = 0; i < 1; i++) {
+    var p = document.createElement("p");
+    p.textContent = questions[i].title;
+    p.setAttribute = ("questionsD", i);
+    questionsD.appendChild(p);
+    renderChoices()
+}
+
+function renderChoices() {
+    displayChoices.innerHTML = "";
+    for (var j = 0; j < 4; j++) {
+
+        var choicesd = questions[i].choices[j];
         var li = document.createElement("li");
-        li.textContent = questions[0].title;
-        questionsD.appendChild(li);
-        renderChoices()
+        li.setAttribute("displayChoices", j)
+
+        var button = document.createElement("button");
+        button.textContent = choicesd;
+        button.setAttribute("class", "buttonChoices")
+        displayChoices.appendChild(button);
     }
-
-    function renderChoices() {
-        displayChoices.innerHTML = "";
-        for (var i = 0; i < 1; i++) {
-
-            var txt = "";
-            var choices = questions[0].choices;
-            choices.forEach(myFunction);
-            document.getElementById("displayChoices").innerHTML = txt;
-
-            function myFunction(value) {
-                txt = txt + "<input type=radio>" + value + "<br>";
-            }
-
-        }
-    }
-
-    console.log(questions[0].choices);
 
 }
+$(".buttonChoices").on("click", function () {
+    var element = event.target;
+    var userPick = element.textContent;
+    console.log(userPick);
+    console.log("questions[i].choices[index]", questions[i].choices[index]);
+
+    if (userPick === questions[i].answer) {
+        result.innerHTML = "";
+        var index = element.getAttribute("displayChoices");
+        var msm = document.createTextNode("CORRECT");
+        result.appendChild(msm);
+        i++
+        renderQuestions();
+
+    } else {
+
+        msm = document.createTextNode("WRONG");
+        result.appendChild(msm)
+        i++
+        secondsLeft -= 15;
+        displayTime();
+
+        renderQuestions();
+
+
+    }
+
+
+})
+
+
 var timeEl = document.querySelector("#time");
-var secondsLeft = 100;
-
+var secondsLeft = 75;
+var timerInterval;
 function setTime() {
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left";
-
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      result();
-    }
-
-  }, 1000);
+    timerInterval = setInterval(function () {
+        secondsLeft--;
+        displayTime();
+    }, 1000);
 }
-function result() {
+
+function displayResult() {
     timeEl.textContent = " ";
-  
+
     var inputEl = document.createElement("input");
-  inputEl.setAttribute("type","text");
-    
+    inputEl.setAttribute("type", "text");
+
     result.appendChild(inputEl);
-  
-  }
-  
-  setTime();
+
+}
+
+function displayTime() {
+    if (secondsLeft < 0) {
+        clearInterval(timerInterval);
+        secondsLeft = 0;
+        
+        displayResult();
+    }
+    timeEl.textContent = secondsLeft + " seconds left";
+}
+

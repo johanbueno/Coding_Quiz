@@ -1,4 +1,26 @@
-.button{
-    color: green;
-    
+
+.buttonChoices {
+    display: list-item;
+    background-color: indigo;
+    text-align: center;
+    color: white;
+    margin-top: 5px;;
+    padding: 3px;
+    font-size: 14px;
+    width: 50%;
+    border-radius: 12px;
+    height: auto    ;
+}
+#score {
+    width: 100%;
+    text-align: left;
+    left: 0;
+
+}
+#time {
+
+    width: 100%;
+    text-align: right;
+    right: 0;
+
 }
