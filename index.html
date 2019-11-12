@@ -33,7 +33,7 @@
             <div class="col-md-6">
                 <div>
                     <h4>
-                        Please Answer the following Questions, wrong answers reduce your time by 5 seconds
+                        Please Answer the following JAVASCRIPT Questions, wrong answers reduce your time by 5 seconds. Your final score will be your time left.
                     </h4>
                     <button id="start_quiz" type="button" class="btn btn-success">Star Quiz</button>
                 </div>
@@ -43,8 +43,18 @@
                 </ul>
                 <hr>
                 <div id="result"></div>
-
-
+                <hr>
+                <h5>
+                        Type your Initials
+                    </h5>
+                <span id="initials">  
+                </span>
+                <form id="todo-form" method="POST">
+                        <label for="todo-text">Your Initials</label>
+                        <input type="text" placeholder="Your initials" name="todo-text" id="todo-text" />
+                      </form>
+                <ul id="todos">
+                </ul>
             </div>
             <div class="col-md-3"></div>
         </div>

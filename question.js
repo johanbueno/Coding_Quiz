@@ -1,49 +1,23 @@
 
-
+//  questions
 var questions = [
+     {
+        title: "How does a FOR loop start?",
+        choices: ["for i = 1 to 5", "for (i = 0; i <= 5; i++) ", "for (i <= 5; i++)", "for (i = 0; i <= 5)",],
+        answer: "for (i = 0; i <= 5; i++) ",
+    },
     {
         title: "How do you write Hello World in an alert box?",
         choices: ["alert('Hello World')", "alertBox('Hello World')", "msgBox('Hello World')", "msg('Hello World')",],
         answer: "alert('Hello World')"
     },
-    {
-        title: "Commonly used data types DO NOT include:",
-        choices: ["strings", "booleans", "alerts", "numbers"],
-        answer: "alerts"
-    },
+
     {
         title: "The condition in an if / else statement is enclosed within ____.",
         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
         answer: "parentheses"
     },
-    {
-        title: "Inside which HTML element do we put the JavaScript?",
-        choices: ["<script", "<javascript>", "<js>", "<scripting>"],
-        answer: "<script>"
-    },
-    {
-        title: "Where is the correct place to insert a JavaScript?",
-        choices: ["The <body> section  ", "The <head> section", "Both the <head> section and the <body> section are correct ",],
-        answer: "Both the <head> section and the <body> section are correct  ",
-
-    },
-    {
-        title: "The external JavaScript file must contain the <script> tag.",
-        choices: ["False", "True"],
-        answer: "False",
-    },
-
-
-    {
-        title: "How does a WHILE loop start?",
-        choices: ["while (i <= 10; i++)  ", "while i = 1 to 10", "while (i <= 10)  "],
-        answer: "while (i <= 10)",
-    },
-    {
-        title: "How does a FOR loop start?",
-        choices: ["for i = 1 to 5", "for (i = 0; i <= 5; i++) ", "for (i <= 5; i++)", "for (i = 0; i <= 5)",],
-        answer: "for (i = 0; i <= 5; i++) ",
-    },
+   
 
     {
         title: "How do you round the number 7.25, to the nearest integer?",
@@ -53,38 +27,37 @@ var questions = [
     {
         title: "What is the correct way to write a JavaScript array?",
         choices: ['var colors = ["red", "green", "blue"]', 'var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")', 'var colors = (1:"red", 2:"green", 3:"blue")', 'var colors = "red", "green", "blue"',],
-        answer: 'var colors = ["red", "green", "blue"] '
+        answer: 'var colors = ["red", "green", "blue"]'
     },
-    {
-        title: "How can you detect the client's browser name?",
-        choices: ["navigator.appName ", "browser.name", "client.navName",],
-        answer: "navigator.appName  "
-    },
+    
 ]
 var startQuiz = document.querySelector("#start_quiz");
 var questionsD = document.querySelector("#questionDisplay");
 var displayChoices = document.querySelector("#displayChoices");
 var result = document.querySelector("#result");
+var score = document.querySelector("#score");
+var initialsD = document.querySelector('#initials');
+var todoR = document.querySelector('#todos');
+var todoInput =document.querySelector('#todo_text');
+var todoForm = document.querySelector("#todo-form");
 var i = 0;
-startQuiz.addEventListener("click", start);
 
-function start() {
-    if (startQuiz == true) {
-    }
+startQuiz.addEventListener("click", function(){
     renderQuestions();
     setTime();
-}
-
+})
+ 
+//  function to bring first question
 function renderQuestions() {
 
     questionsD.innerHTML = "";
     var p = document.createElement("p");
     p.textContent = questions[i].title;
-    p.setAttribute = ("questionsD", i);
+    p.setAttribute("questionsD", i);
     questionsD.appendChild(p);
     renderChoices()
 }
-
+//  function to bring the choices according to the questions
 function renderChoices() {
     displayChoices.innerHTML = "";
     for (var j = 0; j < 4; j++) {
@@ -100,19 +73,19 @@ function renderChoices() {
     }
 
 }
+//  Jquery Eventlistener for the buttons 
 $(".buttonChoices").on("click", function () {
     var element = event.target;
     var userPick = element.textContent;
     console.log(userPick);
-    console.log("questions[i].choices[index]", questions[i].choices[index]);
 
     if (userPick === questions[i].answer) {
         result.innerHTML = "";
-        var index = element.getAttribute("displayChoices");
         var msm = document.createTextNode("CORRECT");
         result.appendChild(msm);
         i++
         renderQuestions();
+        initials ();
 
     } else {
 
@@ -121,16 +94,75 @@ $(".buttonChoices").on("click", function () {
         i++
         secondsLeft -= 15;
         displayTime();
-
         renderQuestions();
-
-
+        initials ();
     }
-
-
 })
 
+function initials (){
+    if (questions[questions.length-1].title=== true);
+    initialsD.innerHTML= "";
+    score.innerHTML="";
+    var userScore = document.createElement("div");
+    var userName = document.createElement("input");
+    userScore.getAttribute("type","number");
+    userScore.textContent = "Your score is:"+" "+secondsLeft +" " ;
+    userName.getAttribute("type","text");
+    score.appendChild(userScore);
+    // initialsD.appendChild(userName);
+}
 
+console.log(questions[questions.length-1].title);
+// I tried to stored the user initals with scores :(
+    // sorry I tried
+    // var todos = [];
+    // init();
+    // function renderTodos() {
+    //     todoR.innerHTML = "";
+      
+    //     for (var i = 0; i < todos.length; i++) {
+    //       var todo = todos[i];
+    //       var li = document.createElement("li");
+    //       li.textContent = todo;
+    //       li.setAttribute("data-index", i);
+    //       todoR.appendChild(li);
+    //     }
+    //   }
+    // function init() {
+    //     var storedTodos = JSON.parse(localStorage.getItem("todos"));
+      
+    //     if (storedTodos !== null) {
+    //       todos = storedTodos;
+    //     }
+      
+    //     renderTodos();
+    //   }
+
+    //   function storeTodos() {
+
+    //     localStorage.setItem("todos", JSON.stringify(todos));
+    //   }
+
+    // todoInput.addEventListener("submit", function(event) {
+    //     event.preventDefault();
+      
+    //     var todoText = todoInput.value.trim();
+      
+
+    //     if (todoText === "") {
+    //       return;
+    //     }
+      
+
+    //     todos.push(todoText);
+    //     todoInput.value = "";
+      
+
+    //     storeTodos();
+    //     renderTodos();
+    //   });
+    
+//  function for timer set to 75 seconds
 var timeEl = document.querySelector("#time");
 var secondsLeft = 75;
 var timerInterval;
@@ -141,23 +173,14 @@ function setTime() {
     }, 1000);
 }
 
-function displayResult() {
-    timeEl.textContent = " ";
-
-    var inputEl = document.createElement("input");
-    inputEl.setAttribute("type", "text");
-
-    result.appendChild(inputEl);
-
-}
 
 function displayTime() {
     if (secondsLeft < 0) {
         clearInterval(timerInterval);
         secondsLeft = 0;
-        
-        displayResult();
+
     }
+    
     timeEl.textContent = secondsLeft + " seconds left";
 }
 

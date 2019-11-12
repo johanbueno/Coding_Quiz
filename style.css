@@ -2,14 +2,14 @@
 .buttonChoices {
     display: list-item;
     background-color: indigo;
-    text-align: center;
+    text-align: 100%;
     color: white;
-    margin-top: 5px;;
+    margin-top: 5px;
     padding: 3px;
     font-size: 14px;
-    width: 50%;
+    width: auto;
     border-radius: 12px;
-    height: auto    ;
+    height: auto;
 }
 #score {
     width: 100%;
@@ -24,3 +24,4 @@
     right: 0;
 
 }
+
