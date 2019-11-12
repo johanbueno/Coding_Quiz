@@ -109,7 +109,7 @@ function initials (){
     userScore.textContent = "Your score is:"+" "+secondsLeft +" " ;
     userName.getAttribute("type","text");
     score.appendChild(userScore);
-    // initialsD.appendChild(userName);
+
 }
 
 console.log(questions[questions.length-1].title);
